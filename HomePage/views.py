@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 import os
+from django.contrib import messages
 # import stripe
 from django.conf import settings
 
@@ -23,12 +24,18 @@ def register(request):
         last_name = request.POST.get('LastName')
         email = request.POST.get('Email')
 
-        cnic = request.POST.get('CNIC')
+        # cnic = request.POST.get('CNIC')
         password = request.POST.get('Password')
         address = request.POST.get('Address')
         confirm_password = request.POST.get('ConfirmPassword')
         contact_no = request.POST.get('ContactNo')
         
+        if password != confirm_password:
+            messages.info(request, 'Passwords mismatch')
+            return redirect('register')
+        
+
+
         myUser=User.objects.create_user(first_name,email,password)
         myUser.first_name=first_name
         myUser.last_name=last_name
@@ -39,7 +46,7 @@ def register(request):
             FirstName=first_name,
             LastName=last_name,
             Email=email,
-            CNIC=cnic,
+            # CNIC=cnic,
             Password=password,
             Address=address,
             ConfirmPassword=confirm_password,

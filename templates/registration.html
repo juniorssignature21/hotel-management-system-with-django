@@ -88,8 +88,15 @@
 </head>
 
 <body>
-
+{% for message in messages %}
+        <h5>
+            <strong>
+                {{message}}
+            </strong>
+        </h5>
+        {% endfor %}
     <div class="wrapper">
+        
         <form method="POST" action="{% url 'register' %}">
             {% csrf_token %}
             <h1>Booking</h1>
@@ -112,10 +119,10 @@
                     <input type="text" name="Email" placeholder="Email Address">
                     <i class='bx bxs-envelope'></i>
                 </div>
-                <div class="input_filed">
+                <!-- <div class="input_filed">
                     <input type="tel" name="CNIC" placeholder="NIC Number without Dashes" pattern="[0-9]{13}">
                     <i class='bx bxs-id-card'></i>
-                </div>
+                </div> -->
             </div>
     
             <!-- Address and Phone Number -->

@@ -25,3 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('HomePage.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+#Superuser login
+#username: princekembla
+#password : 1234@kembla
